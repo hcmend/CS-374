@@ -1,0 +1,160 @@
+#Initializing - Cleaning up - ignore Operation Not Permitted errors
+#Note: this script requires that the current directory (.) be in your PATH in ~/.bashrc
+
+#-----------------------------------------
+#START OF GRADING SCRIPT
+#keygen 20 > key20
+#5 POINTS: key20 must exist
+key20 exists!
+
+#-----------------------------------------
+#5 POINTS: Number of characters in key20, should be 21:
+21 key20
+
+#-----------------------------------------
+#keygen 70000 > key70000
+#5 POINTS: Number of characters in key70000, should be 70001:
+70001 key70000
+
+#-----------------------------------------
+#enc_client plaintext1 key20 $encport
+#10 POINTS: Should return error about too-short key
+Error: key is shorter than plaintext
+
+#-----------------------------------------
+#enc_client plaintext1 key70000 $encport
+#20 POINTS: Should return encrypted version of plaintext1
+TDYANYHCNGNDYZTYXQSODKMQRKXQTMZ THEN
+
+#-----------------------------------------
+#enc_client plaintext1 key70000 $encport > ciphertext1
+#10 POINTS: ciphertext1 must exist
+ciphertext1 exists!
+
+#-----------------------------------------
+#10 POINTS: ciphertext1 must be same number of chars as source
+#wc -m plaintext1
+37 plaintext1
+#Should be same: wc -m ciphertext1
+37 ciphertext1
+
+#-----------------------------------------
+#5 POINTS: ciphertext1 should look encrypted
+TDYANYHCNGNDYZTYXQSODKMQRKXQTMZ THEN
+
+#-----------------------------------------
+#dec_client ciphertext1 key70000 $encport
+#5 POINTS: Should fail giving error that dec_client cannot use enc_server
+Error: client type mismatch
+Error: server type mismatch
+
+#-----------------------------------------
+#20 POINTS: should return decrypted ciphertext1 that matches source
+#cat plaintext1
+THE RED GOOSE FLIES AT MIDNIGHT STOP
+#dec_client ciphertext1 key70000 $decport
+THE RED GOOSE FLIES AT MIDNIGHT STOP
+
+#-----------------------------------------
+#dec_client ciphertext1 key70000 $decport > plaintext1_a
+#10 POINTS: plaintext1_a must exist
+plaintext1_a exists!
+
+#-----------------------------------------
+#cmp plaintext1 plaintext1_a
+#5 POINTS: plaintext1 must be the same as plaintext1_a:
+#echo $? should be == 0, which means the cmp succeeded!
+0
+
+#-----------------------------------------
+#20 POINTS: concurrent test of encryption - look for 4 properly-sized ciphertext# files, or 5 where the 5th is 0 bytes
+#5 POINTS: Should be only one error about plaintext5 being bad
+Ten second sleep, your program must complete in this time
+Error: invalid character in input
+total 1392
+drwx------. 4 mendenhh upg56169   905 Mar 19 23:33 ./
+drwxrwx---. 9 mendenhh upg56169  1409 Mar 15 16:55 ../
+-rwxrwx---. 1 mendenhh upg56169 13296 Mar 19 19:22 a.out
+-rw-rw----. 1 mendenhh upg56169    37 Mar 19 23:33 ciphertext1
+-rw-rw----. 1 mendenhh upg56169   317 Mar 19 23:33 ciphertext2
+-rw-rw----. 1 mendenhh upg56169    17 Mar 19 23:33 ciphertext3
+-rw-rw----. 1 mendenhh upg56169 69333 Mar 19 23:33 ciphertext4
+-rw-rw----. 1 mendenhh upg56169     0 Mar 19 23:33 ciphertext5
+-rwx--x---. 1 mendenhh upg56169   159 Mar 19 20:18 compileall
+-rwxrwx---. 1 mendenhh upg56169 13392 Mar 19 23:30 dec_client
+-rwx------. 1 mendenhh upg56169  5894 Mar 19 23:28 dec_client.c
+-rwxrwx---. 1 mendenhh upg56169 13464 Mar 19 23:30 dec_server
+-rwx------. 1 mendenhh upg56169  7636 Mar 19 23:26 dec_server.c
+-rwxrwx---. 1 mendenhh upg56169 13504 Mar 19 23:30 enc_client
+-rwx------. 1 mendenhh upg56169  5996 Mar 19 23:26 enc_client.c
+-rwxrwx---. 1 mendenhh upg56169 13464 Mar 19 23:30 enc_server
+-rwx------. 1 mendenhh upg56169  7507 Mar 19 23:26 enc_server.c
+drwx------. 2 mendenhh upg56169    80 Mar 15 16:55 example/
+drwx------. 7 mendenhh upg56169   328 Mar 19 23:32 .git/
+-rwx------. 1 mendenhh upg56169    61 Mar 15 16:55 .gitignore
+-rw-rw----. 1 mendenhh upg56169    21 Mar 19 23:33 key20
+-rw-rw----. 1 mendenhh upg56169 70001 Mar 19 23:33 key70000
+-rwxrwx---. 1 mendenhh upg56169  8688 Mar 19 23:30 keygen
+-rwx------. 1 mendenhh upg56169   906 Mar 19 23:18 keygen.c
+-rw-rw----. 1 mendenhh upg56169  1025 Mar 19 22:40 mykey
+-rw-rw----. 1 mendenhh upg56169  1025 Mar 19 22:40 mykey2
+-rw-rw----. 1 mendenhh upg56169    11 Mar 19 21:48 myshortkey
+-rw-rw----. 1 mendenhh upg56169  2484 Mar 19 23:33 mytestresults
+-rwx--x---. 1 mendenhh upg56169  5388 Mar 19 22:02 p5testscript
+-rwx------. 1 mendenhh upg56169    37 Mar 19 23:02 plaintext1
+-rwx------. 1 mendenhh upg56169   317 Mar 19 23:02 plaintext2
+-rwx------. 1 mendenhh upg56169    17 Mar 19 23:02 plaintext3
+-rwx------. 1 mendenhh upg56169 69333 Mar 19 23:02 plaintext4
+-rwx------. 1 mendenhh upg56169    42 Mar 19 23:02 plaintext5
+-rwx------. 1 mendenhh upg56169  8597 Mar 15 16:55 README.md
+
+#-----------------------------------------
+#15 POINTS: concurrent test of decryption - look for 4 plaintext#_a files that match the plaintext# files
+#Ten second sleep, your program must complete in this time
+total 1920
+drwx------. 4 mendenhh upg56169  1025 Mar 19 23:33 ./
+drwxrwx---. 9 mendenhh upg56169  1409 Mar 15 16:55 ../
+-rwxrwx---. 1 mendenhh upg56169 13296 Mar 19 19:22 a.out
+-rw-rw----. 1 mendenhh upg56169    37 Mar 19 23:33 ciphertext1
+-rw-rw----. 1 mendenhh upg56169   317 Mar 19 23:33 ciphertext2
+-rw-rw----. 1 mendenhh upg56169    17 Mar 19 23:33 ciphertext3
+-rw-rw----. 1 mendenhh upg56169 69333 Mar 19 23:33 ciphertext4
+-rw-rw----. 1 mendenhh upg56169     0 Mar 19 23:33 ciphertext5
+-rwx--x---. 1 mendenhh upg56169   159 Mar 19 20:18 compileall
+-rwxrwx---. 1 mendenhh upg56169 13392 Mar 19 23:30 dec_client
+-rwx------. 1 mendenhh upg56169  5894 Mar 19 23:28 dec_client.c
+-rwxrwx---. 1 mendenhh upg56169 13464 Mar 19 23:30 dec_server
+-rwx------. 1 mendenhh upg56169  7636 Mar 19 23:26 dec_server.c
+-rwxrwx---. 1 mendenhh upg56169 13504 Mar 19 23:30 enc_client
+-rwx------. 1 mendenhh upg56169  5996 Mar 19 23:26 enc_client.c
+-rwxrwx---. 1 mendenhh upg56169 13464 Mar 19 23:30 enc_server
+-rwx------. 1 mendenhh upg56169  7507 Mar 19 23:26 enc_server.c
+drwx------. 2 mendenhh upg56169    80 Mar 15 16:55 example/
+drwx------. 7 mendenhh upg56169   328 Mar 19 23:32 .git/
+-rwx------. 1 mendenhh upg56169    61 Mar 15 16:55 .gitignore
+-rw-rw----. 1 mendenhh upg56169    21 Mar 19 23:33 key20
+-rw-rw----. 1 mendenhh upg56169 70001 Mar 19 23:33 key70000
+-rwxrwx---. 1 mendenhh upg56169  8688 Mar 19 23:30 keygen
+-rwx------. 1 mendenhh upg56169   906 Mar 19 23:18 keygen.c
+-rw-rw----. 1 mendenhh upg56169  1025 Mar 19 22:40 mykey
+-rw-rw----. 1 mendenhh upg56169  1025 Mar 19 22:40 mykey2
+-rw-rw----. 1 mendenhh upg56169    11 Mar 19 21:48 myshortkey
+-rw-rw----. 1 mendenhh upg56169  4842 Mar 19 23:33 mytestresults
+-rwx--x---. 1 mendenhh upg56169  5388 Mar 19 22:02 p5testscript
+-rwx------. 1 mendenhh upg56169    37 Mar 19 23:02 plaintext1
+-rw-rw----. 1 mendenhh upg56169    37 Mar 19 23:33 plaintext1_a
+-rwx------. 1 mendenhh upg56169   317 Mar 19 23:02 plaintext2
+-rw-rw----. 1 mendenhh upg56169   317 Mar 19 23:33 plaintext2_a
+-rwx------. 1 mendenhh upg56169    17 Mar 19 23:02 plaintext3
+-rw-rw----. 1 mendenhh upg56169    17 Mar 19 23:33 plaintext3_a
+-rwx------. 1 mendenhh upg56169 69333 Mar 19 23:02 plaintext4
+-rw-rw----. 1 mendenhh upg56169 69333 Mar 19 23:33 plaintext4_a
+-rwx------. 1 mendenhh upg56169    42 Mar 19 23:02 plaintext5
+-rwx------. 1 mendenhh upg56169  8597 Mar 15 16:55 README.md
+
+#-----------------------------------------
+#Cleaning up - ignore Operation Not Permitted errors
+./p5testscript: line 141: 251986 Terminated              ./dec_server $decport
+./p5testscript: line 143: 251985 Terminated              ./enc_server $encport
+
+#SCRIPT COMPLETE
